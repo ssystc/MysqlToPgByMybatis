@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunsy.MysqlToPostgresql.postgresql.gvauth.mapper.PgClientMapper" >
+    
+    <update id="createNewTable">  
+    	DROP TABLE IF EXISTS "public"."auth_client";
+		CREATE TABLE "public"."auth_client" (
+		"id" int4 NOT NULL,
+		"code" varchar(255) COLLATE "default",
+		"secret" varchar(255) COLLATE "default",
+		"name" varchar(255) COLLATE "default",
+		"locked" char(1) COLLATE "default",
+		"description" varchar(255) COLLATE "default",
+		"crt_time" timestamp(0),
+		"crt_user" varchar(255) COLLATE "default",
+		"crt_name" varchar(255) COLLATE "default",
+		"crt_host" varchar(255) COLLATE "default",
+		"upd_time" timestamp(0),
+		"upd_user" varchar(255) COLLATE "default",
+		"upd_name" varchar(255) COLLATE "default",
+		"upd_host" varchar(255) COLLATE "default",
+		"attr1" varchar(255) COLLATE "default",
+		"attr2" varchar(255) COLLATE "default",
+		"attr3" varchar(255) COLLATE "default",
+		"attr4" varchar(255) COLLATE "default",
+		"attr5" varchar(255) COLLATE "default",
+		"attr6" varchar(255) COLLATE "default",
+		"attr7" varchar(255) COLLATE "default",
+		"attr8" varchar(255) COLLATE "default"
+		)
+		WITH (OIDS=FALSE);
+		COMMENT ON COLUMN "public"."auth_client"."code" IS '服务编码';
+		COMMENT ON COLUMN "public"."auth_client"."secret" IS '服务密钥';
+		COMMENT ON COLUMN "public"."auth_client"."name" IS '服务名';
+		COMMENT ON COLUMN "public"."auth_client"."locked" IS '是否锁定';
+		COMMENT ON COLUMN "public"."auth_client"."description" IS '描述';
+		COMMENT ON COLUMN "public"."auth_client"."crt_time" IS '创建时间';
+		COMMENT ON COLUMN "public"."auth_client"."crt_user" IS '创建人';
+		COMMENT ON COLUMN "public"."auth_client"."crt_name" IS '创建人姓名';
+		COMMENT ON COLUMN "public"."auth_client"."crt_host" IS '创建主机';
+		COMMENT ON COLUMN "public"."auth_client"."upd_time" IS '更新时间';
+		COMMENT ON COLUMN "public"."auth_client"."upd_user" IS '更新人';
+		COMMENT ON COLUMN "public"."auth_client"."upd_name" IS '更新姓名';
+		COMMENT ON COLUMN "public"."auth_client"."upd_host" IS '更新主机';
+		
+		ALTER TABLE "public"."auth_client" ADD PRIMARY KEY ("id");
+    </update> 
+    
+    <insert id="insert" parameterType="com.sunsy.MysqlToPostgresql.entity.Client">
+    insert into auth_client (id, code, secret, 
+      name, locked, description, 
+      crt_time, crt_user, crt_name, 
+      crt_host, upd_time, upd_user, 
+      upd_name, upd_host, attr1, 
+      attr2, attr3, attr4, 
+      attr5, attr6, attr7, 
+      attr8)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{secret,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{locked,jdbcType=CHAR}, #{description,jdbcType=VARCHAR}, 
+      #{crt_time,jdbcType=TIMESTAMP}, #{crt_user,jdbcType=VARCHAR}, #{crt_name,jdbcType=VARCHAR}, 
+      #{crt_host,jdbcType=VARCHAR}, #{upd_time,jdbcType=TIMESTAMP}, #{upd_user,jdbcType=VARCHAR}, 
+      #{upd_name,jdbcType=VARCHAR}, #{upd_host,jdbcType=VARCHAR}, #{attr1,jdbcType=VARCHAR}, 
+      #{attr2,jdbcType=VARCHAR}, #{attr3,jdbcType=VARCHAR}, #{attr4,jdbcType=VARCHAR}, 
+      #{attr5,jdbcType=VARCHAR}, #{attr6,jdbcType=VARCHAR}, #{attr7,jdbcType=VARCHAR}, 
+      #{attr8,jdbcType=VARCHAR})
+  </insert>
+    
+</mapper>

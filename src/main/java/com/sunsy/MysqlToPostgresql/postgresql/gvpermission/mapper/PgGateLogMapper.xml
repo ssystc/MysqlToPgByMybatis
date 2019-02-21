@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunsy.MysqlToPostgresql.postgresql.gvpermission.mapper.PgGateLogMapper" >
+    
+    <update id="createNewTable">  
+    	DROP TABLE IF EXISTS "public"."gate_log";
+		CREATE TABLE "public"."gate_log" (
+		"id" int4 NOT NULL,
+		"menu" varchar(255) COLLATE "default",
+		"opt" varchar(255) COLLATE "default",
+		"uri" varchar(255) COLLATE "default",
+		"crt_time" timestamp(0),
+		"crt_user" varchar(255) COLLATE "default",
+		"crt_name" varchar(255) COLLATE "default",
+		"crt_host" varchar(255) COLLATE "default"
+		)
+		WITH (OIDS=FALSE);
+		COMMENT ON COLUMN "public"."gate_log"."id" IS '序号';
+		COMMENT ON COLUMN "public"."gate_log"."menu" IS '菜单';
+		COMMENT ON COLUMN "public"."gate_log"."opt" IS '操作';
+		COMMENT ON COLUMN "public"."gate_log"."uri" IS '资源路径';
+		COMMENT ON COLUMN "public"."gate_log"."crt_time" IS '操作时间';
+		COMMENT ON COLUMN "public"."gate_log"."crt_user" IS '操作人ID';
+		COMMENT ON COLUMN "public"."gate_log"."crt_name" IS '操作人';
+		COMMENT ON COLUMN "public"."gate_log"."crt_host" IS '操作主机';
+		ALTER TABLE "public"."gate_log" ADD PRIMARY KEY ("id");
+    </update> 
+    
+    <insert id="insert" parameterType="com.sunsy.MysqlToPostgresql.entity.GateLog">
+    insert into gate_log (id, menu, opt, 
+      uri, crt_time, crt_user, 
+      crt_name, crt_host)
+    values (#{id,jdbcType=INTEGER}, #{menu,jdbcType=VARCHAR}, #{opt,jdbcType=VARCHAR}, 
+      #{uri,jdbcType=VARCHAR}, #{crt_time,jdbcType=TIMESTAMP}, #{crt_user,jdbcType=VARCHAR}, 
+      #{crt_name,jdbcType=VARCHAR}, #{crt_host,jdbcType=VARCHAR})
+  </insert>
+
+    
+</mapper>

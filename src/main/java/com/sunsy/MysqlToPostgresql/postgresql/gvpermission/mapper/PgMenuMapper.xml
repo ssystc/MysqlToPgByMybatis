@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunsy.MysqlToPostgresql.postgresql.gvpermission.mapper.PgMenuMapper" >
+    
+    <update id="createNewTable">  
+		DROP TABLE IF EXISTS "public"."base_menu";
+		CREATE TABLE "public"."base_menu" (
+		"id" int4 NOT NULL,
+		"code" varchar(255) COLLATE "default",
+		"title" varchar(255) COLLATE "default",
+		"parent_id" int4 NOT NULL,
+		"href" varchar(255) COLLATE "default",
+		"icon" varchar(255) COLLATE "default",
+		"type" char(10) COLLATE "default",
+		"order_num" int4 NOT NULL,
+		"description" varchar(255) COLLATE "default",
+		"path" varchar(500) COLLATE "default",
+		"enabled" char(1) COLLATE "default",
+		"crt_time" timestamp(0),
+		"crt_user" varchar(255) COLLATE "default",
+		"crt_name" varchar(255) COLLATE "default",
+		"crt_host" varchar(255) COLLATE "default",
+		"upd_time" timestamp(0),
+		"upd_user" varchar(255) COLLATE "default",
+		"upd_name" varchar(255) COLLATE "default",
+		"upd_host" varchar(255) COLLATE "default",
+		"attr1" varchar(255) COLLATE "default",
+		"attr2" varchar(255) COLLATE "default",
+		"attr3" varchar(255) COLLATE "default",
+		"attr4" varchar(255) COLLATE "default",
+		"attr5" varchar(255) COLLATE "default",
+		"attr6" varchar(255) COLLATE "default",
+		"attr7" varchar(255) COLLATE "default",
+		"attr8" varchar(255) COLLATE "default"
+		)
+		WITH (OIDS=FALSE)
+		
+		;
+		COMMENT ON COLUMN "public"."base_menu"."code" IS '路径编码';
+		COMMENT ON COLUMN "public"."base_menu"."title" IS '标题';
+		COMMENT ON COLUMN "public"."base_menu"."parent_id" IS '父级节点';
+		COMMENT ON COLUMN "public"."base_menu"."href" IS '资源路径';
+		COMMENT ON COLUMN "public"."base_menu"."icon" IS '图标';
+		COMMENT ON COLUMN "public"."base_menu"."order_num" IS '排序';
+		COMMENT ON COLUMN "public"."base_menu"."description" IS '描述';
+		COMMENT ON COLUMN "public"."base_menu"."path" IS '菜单上下级关系';
+		COMMENT ON COLUMN "public"."base_menu"."enabled" IS '启用禁用';
+		ALTER TABLE "public"."base_menu" ADD PRIMARY KEY ("id");
+    </update> 
+    
+    <insert id="insert" parameterType="com.sunsy.MysqlToPostgresql.entity.Menu">
+    insert into base_menu (id, code, title, 
+      parent_id, href, icon, 
+      type, order_num, description, 
+      path, enabled, crt_time, 
+      crt_user, crt_name, crt_host, 
+      upd_time, upd_user, upd_name, 
+      upd_host, attr1, attr2, 
+      attr3, attr4, attr5, 
+      attr6, attr7, attr8
+      )
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{parent_id,jdbcType=INTEGER}, #{href,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{type,jdbcType=CHAR}, #{order_num,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, 
+      #{path,jdbcType=VARCHAR}, #{enabled,jdbcType=CHAR}, #{crt_time,jdbcType=TIMESTAMP}, 
+      #{crt_user,jdbcType=VARCHAR}, #{crt_name,jdbcType=VARCHAR}, #{crt_host,jdbcType=VARCHAR}, 
+      #{upd_time,jdbcType=TIMESTAMP}, #{upd_user,jdbcType=VARCHAR}, #{upd_name,jdbcType=VARCHAR}, 
+      #{upd_host,jdbcType=VARCHAR}, #{attr1,jdbcType=VARCHAR}, #{attr2,jdbcType=VARCHAR}, 
+      #{attr3,jdbcType=VARCHAR}, #{attr4,jdbcType=VARCHAR}, #{attr5,jdbcType=VARCHAR}, 
+      #{attr6,jdbcType=VARCHAR}, #{attr7,jdbcType=VARCHAR}, #{attr8,jdbcType=VARCHAR}
+      )
+  </insert>
+    
+
+    
+</mapper>

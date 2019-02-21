@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ <configuration>
+ 
+ 	 <properties resource="config.properties"/>
+ 
+     <environments default="mysql_gv_permission">
+     
+     	<!-- 以下四个environment分别是mysql.gv_auth、mysql.gv_permission、pg.gv_auth、pg.gv_permission四个数据库 -->
+         <environment id="mysql_gv_auth">
+             <transactionManager type="JDBC" />
+             <!-- 配置数据库连接信息 -->
+             <dataSource type="POOLED">
+                 <property name="driver" value="${mysql.driver}" />
+                 <property name="url" value="${mysql.gv_auth.url}" />
+                 <property name="username" value="${mysql.username}" />
+                 <property name="password" value="${mysql.password}" />
+             </dataSource>
+         </environment>
+         
+         <environment id="mysql_gv_permission">
+             <transactionManager type="JDBC" />
+             <!-- 配置数据库连接信息 -->
+             <dataSource type="POOLED">
+                 <property name="driver" value="${mysql.driver}" />
+                 <property name="url" value="${mysql.gv_permission.url}" />
+                 <property name="username" value="${mysql.username}" />
+                 <property name="password" value="${mysql.password}" />
+             </dataSource>
+         </environment>
+         
+         <environment id="pg_gv_auth">
+             <transactionManager type="JDBC" />
+             <!-- 配置数据库连接信息 -->
+             <dataSource type="POOLED">
+                 <property name="driver" value="${pg.driver}" />
+                 <property name="url" value="${pg.gv_auth.url}" />
+                 <property name="username" value="${pg.username}" />
+                 <property name="password" value="${pg.password}" />
+             </dataSource>
+         </environment>
+         
+         <environment id="pg_gv_permission">
+             <transactionManager type="JDBC" />
+             <!-- 配置数据库连接信息 -->
+             <dataSource type="POOLED">
+                 <property name="driver" value="${pg.driver}" />
+                 <property name="url" value="${pg.gv_permission.url}" />
+                 <property name="username" value="${pg.username}" />
+                 <property name="password" value="${pg.password}" />
+             </dataSource>
+         </environment>
+         
+     </environments>
+     
+     
+     <mappers>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvauth/mapper/ClientMapper.xml"/>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvauth/mapper/ClientServiceMapper.xml"/>
+     	
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvpermission/mapper/ElementMapper.xml"/>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvpermission/mapper/GateLogMapper.xml"/>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvpermission/mapper/GroupLeaderMapper.xml"/>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvpermission/mapper/GroupMapper.xml"/>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvpermission/mapper/GroupMemberMapper.xml"/>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvpermission/mapper/GroupTypeMapper.xml"/>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvpermission/mapper/MenuMapper.xml"/>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvpermission/mapper/ResourceAuthorityMapper.xml"/>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvpermission/mapper/RoleMapper.xml"/>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvpermission/mapper/ServiceInfoMapper.xml"/>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvpermission/mapper/UserMapper.xml"/>
+     	<mapper resource="com/sunsy/MysqlToPostgresql/mysql/gvpermission/mapper/UserRoleMapper.xml"/>
+     	
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvauth/mapper/PgClientMapper.xml"/>
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvauth/mapper/PgClientServiceMapper.xml"/>
+      	
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvpermission/mapper/PgElementMapper.xml"/>
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvpermission/mapper/PgGateLogMapper.xml"/>
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvpermission/mapper/PgGroupLeaderMapper.xml"/>
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvpermission/mapper/PgGroupMapper.xml"/>
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvpermission/mapper/PgGroupMemberMapper.xml"/>
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvpermission/mapper/PgGroupTypeMapper.xml"/>
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvpermission/mapper/PgMenuMapper.xml"/>
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvpermission/mapper/PgResourceAuthorityMapper.xml"/>
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvpermission/mapper/PgRoleMapper.xml"/>
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvpermission/mapper/PgServiceInfoMapper.xml"/>
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvpermission/mapper/PgUserMapper.xml"/>
+      	<mapper resource="com/sunsy/MysqlToPostgresql/postgresql/gvpermission/mapper/PgUserRoleMapper.xml"/>
+      	
+     	
+     </mappers>
+     
+ </configuration>

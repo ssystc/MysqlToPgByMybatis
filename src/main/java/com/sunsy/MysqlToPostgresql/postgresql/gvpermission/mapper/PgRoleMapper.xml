@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunsy.MysqlToPostgresql.postgresql.gvpermission.mapper.PgRoleMapper" >
+    
+    <update id="createNewTable">  
+		DROP TABLE IF EXISTS "public"."base_role";
+		CREATE TABLE "public"."base_role" (
+		"id" int4 NOT NULL,
+		"role_name" varchar(50) COLLATE "default" NOT NULL,
+		"role_desc" varchar(255) COLLATE "default"
+		)
+		WITH (OIDS=FALSE)
+		
+		;
+		COMMENT ON COLUMN "public"."base_role"."id" IS '角色id';
+		COMMENT ON COLUMN "public"."base_role"."role_name" IS '角色名称';
+		COMMENT ON COLUMN "public"."base_role"."role_desc" IS '角色描述';
+		ALTER TABLE "public"."base_role" ADD PRIMARY KEY ("id");
+    </update> 
+    
+    <insert id="insert" parameterType="com.sunsy.MysqlToPostgresql.entity.Role">
+    insert into base_role (id, role_name, role_desc
+      )
+    values (#{id,jdbcType=INTEGER}, #{role_name,jdbcType=VARCHAR}, #{role_desc,jdbcType=VARCHAR}
+      )
+  </insert>
+    
+    
+</mapper>

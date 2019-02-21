@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunsy.MysqlToPostgresql.postgresql.gvpermission.mapper.PgGroupLeaderMapper" >
+    
+    <update id="createNewTable">  
+    	DROP TABLE IF EXISTS "public"."base_group_leader";
+		CREATE TABLE "public"."base_group_leader" (
+		"id" int4 NOT NULL,
+		"group_id" varchar(255) COLLATE "default",
+		"user_id" varchar(255) COLLATE "default",
+		"description" varchar(255) COLLATE "default",
+		"crt_time" timestamp(0),
+		"crt_user" varchar(255) COLLATE "default",
+		"crt_name" varchar(255) COLLATE "default",
+		"crt_host" varchar(255) COLLATE "default",
+		"upd_time" timestamp(0),
+		"upd_user" varchar(255) COLLATE "default",
+		"upd_name" varchar(255) COLLATE "default",
+		"upd_host" varchar(255) COLLATE "default",
+		"attr1" varchar(255) COLLATE "default",
+		"attr2" varchar(255) COLLATE "default",
+		"attr3" varchar(255) COLLATE "default",
+		"attr4" varchar(255) COLLATE "default",
+		"attr5" varchar(255) COLLATE "default",
+		"attr6" varchar(255) COLLATE "default",
+		"attr7" varchar(255) COLLATE "default",
+		"attr8" varchar(255) COLLATE "default"
+		)
+		WITH (OIDS=FALSE);
+		ALTER TABLE "public"."base_group_leader" ADD PRIMARY KEY ("id");
+    </update> 
+    
+    <insert id="insert" parameterType="com.sunsy.MysqlToPostgresql.entity.GroupLeader">
+    insert into base_group_leader (id, group_id, user_id, 
+      description, crt_time, crt_user, 
+      crt_name, crt_host, upd_time, 
+      upd_user, upd_name, upd_host, 
+      attr1, attr2, attr3, 
+      attr4, attr5, attr6, 
+      attr7, attr8)
+    values (#{id,jdbcType=INTEGER}, #{group_id,jdbcType=VARCHAR}, #{user_id,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{crt_time,jdbcType=TIMESTAMP}, #{crt_user,jdbcType=VARCHAR}, 
+      #{crt_name,jdbcType=VARCHAR}, #{crt_host,jdbcType=VARCHAR}, #{upd_time,jdbcType=TIMESTAMP}, 
+      #{upd_user,jdbcType=VARCHAR}, #{upd_name,jdbcType=VARCHAR}, #{upd_host,jdbcType=VARCHAR}, 
+      #{attr1,jdbcType=VARCHAR}, #{attr2,jdbcType=VARCHAR}, #{attr3,jdbcType=VARCHAR}, 
+      #{attr4,jdbcType=VARCHAR}, #{attr5,jdbcType=VARCHAR}, #{attr6,jdbcType=VARCHAR}, 
+      #{attr7,jdbcType=VARCHAR}, #{attr8,jdbcType=VARCHAR})
+  </insert>
+    
+</mapper>

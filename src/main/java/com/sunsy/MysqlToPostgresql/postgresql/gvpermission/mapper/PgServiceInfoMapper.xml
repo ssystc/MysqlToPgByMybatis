@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunsy.MysqlToPostgresql.postgresql.gvpermission.mapper.PgServiceInfoMapper" >
+    
+    <update id="createNewTable">  
+		DROP TABLE IF EXISTS "public"."service_info";
+		CREATE TABLE "public"."service_info" (
+		"id" int4 NOT NULL,
+		"service_name" varchar(255) COLLATE "default" NOT NULL,
+		"service_path" varchar(255) COLLATE "default" NOT NULL,
+		"service_state" char(50) COLLATE "default",
+		"package_name" varchar(50) COLLATE "default" NOT NULL,
+		"host_ip" varchar(15) COLLATE "default",
+		"service_port" varchar(5) COLLATE "default" NOT NULL,
+		"start_order" int4,
+		"start_param" varchar(1000) COLLATE "default",
+		"note1" varchar(255) COLLATE "default",
+		"note2" varchar(255) COLLATE "default",
+		"note3" varchar(255) COLLATE "default",
+		"note4" varchar(255) COLLATE "default",
+		"note5" varchar(255) COLLATE "default"
+		)
+		WITH (OIDS=FALSE)
+		
+		;
+		COMMENT ON COLUMN "public"."service_info"."id" IS '主键ID，自增
+		';
+		COMMENT ON COLUMN "public"."service_info"."service_name" IS '服务名称';
+		COMMENT ON COLUMN "public"."service_info"."service_path" IS '服务目录';
+		COMMENT ON COLUMN "public"."service_info"."service_state" IS '服务状态';
+		COMMENT ON COLUMN "public"."service_info"."package_name" IS '服务打包名称(JAR)';
+		COMMENT ON COLUMN "public"."service_info"."host_ip" IS '服务IP';
+		COMMENT ON COLUMN "public"."service_info"."service_port" IS '服务端口';
+		COMMENT ON COLUMN "public"."service_info"."start_order" IS '启动顺序';
+		COMMENT ON COLUMN "public"."service_info"."start_param" IS '启动参数';
+		COMMENT ON COLUMN "public"."service_info"."note1" IS '扩展字段1';
+		COMMENT ON COLUMN "public"."service_info"."note2" IS '扩展字段2';
+		COMMENT ON COLUMN "public"."service_info"."note3" IS '扩展字段3';
+		COMMENT ON COLUMN "public"."service_info"."note4" IS '扩展字段4';
+		COMMENT ON COLUMN "public"."service_info"."note5" IS '扩展字段5';
+		ALTER TABLE "public"."service_info" ADD PRIMARY KEY ("id");
+    </update> 
+    
+    <insert id="insert" parameterType="com.sunsy.MysqlToPostgresql.entity.ServiceInfo">
+    insert into service_info (id, service_name, service_path, 
+      service_state, package_name, host_ip, 
+      service_port, start_order, start_param, 
+      note1, note2, note3, 
+      note4, note5)
+    values (#{id,jdbcType=INTEGER}, #{service_name,jdbcType=VARCHAR}, #{service_path,jdbcType=VARCHAR}, 
+      #{service_state,jdbcType=CHAR}, #{package_name,jdbcType=VARCHAR}, #{host_ip,jdbcType=VARCHAR}, 
+      #{service_port,jdbcType=VARCHAR}, #{start_order,jdbcType=INTEGER}, #{start_param,jdbcType=VARCHAR}, 
+      #{note1,jdbcType=VARCHAR}, #{note2,jdbcType=VARCHAR}, #{note3,jdbcType=VARCHAR}, 
+      #{note4,jdbcType=VARCHAR}, #{note5,jdbcType=VARCHAR})
+  </insert>
+
+    
+</mapper>

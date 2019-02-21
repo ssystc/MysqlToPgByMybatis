@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunsy.MysqlToPostgresql.postgresql.gvpermission.mapper.PgUserRoleMapper" >
+    
+    <update id="createNewTable" parameterType="string">  
+		DROP TABLE IF EXISTS "public"."base_user_role";
+		CREATE TABLE "public"."base_user_role" (
+		"id" int4 NOT NULL,
+		"role_id" int4 NOT NULL,
+		"user_id" int4 NOT NULL
+		)
+		WITH (OIDS=FALSE)
+		
+		;
+		COMMENT ON COLUMN "public"."base_user_role"."id" IS '主键id';
+		COMMENT ON COLUMN "public"."base_user_role"."role_id" IS '角色id';
+		COMMENT ON COLUMN "public"."base_user_role"."user_id" IS '用户id';
+		ALTER TABLE "public"."base_user_role" ADD PRIMARY KEY ("id");
+    </update> 
+    
+    <insert id="insert" parameterType="com.sunsy.MysqlToPostgresql.entity.UserRole">
+    insert into base_user_role (id, role_id, user_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{role_id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}
+      )
+  </insert>
+    
+</mapper>
