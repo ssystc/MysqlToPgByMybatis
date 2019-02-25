@@ -17,7 +17,7 @@ public class MysqlToPgService {
 			SqlSession session = sessionFactory.openSession();
 			String statement = "com.sunsy.MysqlToPostgresql.mysql.gv" + authOrPermission + ".mapper." + mapperName + "Mapper.get" + mapperName + "s";
 			List<Object> list = session.selectList(statement);
-			System.out.println("table like " + mapperName + "size:" + list.size());
+			System.out.println("table like " + mapperName + " size:" + list.size());
 			
 			SqlSessionFactory pgSessionFactory = DataSourceSqlSessionFactory.getSqlSessionFactory("pg_gv_" + authOrPermission);
 			SqlSession pgSession = pgSessionFactory.openSession();

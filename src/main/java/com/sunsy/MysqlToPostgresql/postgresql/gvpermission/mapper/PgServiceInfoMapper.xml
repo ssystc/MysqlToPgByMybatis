@@ -9,7 +9,7 @@
 		"id" int4 NOT NULL,
 		"service_name" varchar(255) COLLATE "default" NOT NULL,
 		"service_path" varchar(255) COLLATE "default" NOT NULL,
-		"service_state" char(50) COLLATE "default",
+		"service_state" varchar(50) COLLATE "default",
 		"package_name" varchar(50) COLLATE "default" NOT NULL,
 		"host_ip" varchar(15) COLLATE "default",
 		"service_port" varchar(5) COLLATE "default" NOT NULL,
@@ -49,7 +49,7 @@
       note1, note2, note3, 
       note4, note5)
     values (#{id,jdbcType=INTEGER}, #{service_name,jdbcType=VARCHAR}, #{service_path,jdbcType=VARCHAR}, 
-      #{service_state,jdbcType=CHAR}, #{package_name,jdbcType=VARCHAR}, #{host_ip,jdbcType=VARCHAR}, 
+      #{service_state,jdbcType=VARCHAR}, #{package_name,jdbcType=VARCHAR}, #{host_ip,jdbcType=VARCHAR}, 
       #{service_port,jdbcType=VARCHAR}, #{start_order,jdbcType=INTEGER}, #{start_param,jdbcType=VARCHAR}, 
       #{note1,jdbcType=VARCHAR}, #{note2,jdbcType=VARCHAR}, #{note3,jdbcType=VARCHAR}, 
       #{note4,jdbcType=VARCHAR}, #{note5,jdbcType=VARCHAR})
